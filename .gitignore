@@ -3,3 +3,17 @@ split_html.py
 __pycache__/
 .DS_Store
 Thumbs.db
+# Node / build
+node_modules/
+dist/
+*.log
+
+# OS / editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Backups
+*.bak
+*.backup
