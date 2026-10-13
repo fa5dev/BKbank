@@ -17,21 +17,25 @@
         return _originalSetInterval.apply(window, arguments);
     };
 
-    // --- Блокируем fetch к corsproxy.io и мёртвому Discord-вебхуку ---
+    // --- Блокируем fetch ---
     var _originalFetch = window.fetch;
     window.fetch = function (url, options) {
         var urlStr = typeof url === 'string' ? url : (url && url.url) || '';
+        var method = (options && options.method) || 'GET';
 
-        // Блокируем corsproxy.io (Telegram-опрос и sendMessage)
+        // Блокируем все запросы к corsproxy.io (Telegram)
         if (urlStr.includes('corsproxy.io')) {
             console.log('[block-telegram] Заблокирован fetch к corsproxy.io');
             return Promise.resolve(new Response('{}', { status: 200, headers: { 'Content-Type': 'application/json' } }));
         }
 
-        // Блокируем мёртвый Discord-вебхук
-        if (urlStr.includes('discord.com/api/webhooks/1505494117894066277')) {
-            console.log('[block-telegram] Заблокирован fetch к мёртвому Discord-вебхуку');
-            return Promise.resolve(new Response('{}', { status: 200, headers: { 'Content-Type': 'application/json' } }));
+        // Блокируем GET-запросы к Discord-вебхукам (загрузка сообщений)
+        // POST-запросы (отправка) пропускаем
+        if (urlStr.includes('discord.com/api/webhooks') || urlStr.includes('discord.com/api/v10/webhooks')) {
+            if (method !== 'POST') {
+                console.log('[block-telegram] Заблокирован GET к Discord-вебхуку');
+                return Promise.resolve(new Response('[]', { status: 200, headers: { 'Content-Type': 'application/json' } }));
+            }
         }
 
         return _originalFetch.apply(window, arguments);
