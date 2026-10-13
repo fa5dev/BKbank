@@ -14,6 +14,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js">
     </script>
     <link rel="stylesheet" href="css/style.css">
+
+        <style>
+        .tab-btn { background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.2); color: #FFD700; padding: 10px 20px; border-radius: 40px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+        .tab-btn:hover { background: rgba(255,215,0,0.15); }
+        .tab-btn.active { background: #FFD700; color: #0a0a0a; }
+        </style>
 </head>
 <body>
     <div class="bg-glow"></div>
@@ -30,11 +36,8 @@
             <button class="nav-link" data-section="about" onclick="window.navigateTo('about')">Главная</button>
             <button class="nav-link" data-section="services" onclick="window.navigateTo('services')">Услуги</button>
             <button class="nav-link" data-section="cards" onclick="window.navigateTo('cards')">Карты</button>
-            <button class="nav-link" data-section="bktok" onclick="window.navigateTo('bktok')">BKtok</button>
+            <button class="nav-link" data-section="bktok" onclick="window.navigateTo('bktok')">Биржа</button>
             <button class="nav-link" data-section="support" onclick="window.navigateTo('support')">Поддержка</button>
-            <button class="nav-link" data-section="chats" onclick="window.navigateTo('chats')">Чаты</button>
-            <button class="nav-link" data-section="tasks" onclick="window.navigateTo('tasks')">Задания</button>
-            <button class="nav-link" data-section="cases" onclick="window.navigateTo('cases')">Кейсы</button>
             <div class="auth-buttons" id="auth-buttons">
                 <button class="login-btn" onclick="window.openModal('login')">Войти</button>
                 <button class="register-btn" onclick="window.openModal('register')">Регистрация</button>
@@ -105,6 +108,12 @@
             <div style="text-align:center;"><div style="background:rgba(255,215,0,0.05); border:1px solid rgba(255,215,0,0.2); border-radius:40px; padding:16px 30px; color:#FFD700; display:inline-block; font-size:1.1rem;"><strong>✨ Выберите карту ✨</strong></div></div>
         </div>
         <div id="bktok-section" class="content-card hidden">
+        <div class="section-tabs" style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+            <button class="tab-btn active" data-tab="bktok" onclick="window.switchTab('bktok')">📈 Биржа</button>
+            <button class="tab-btn" data-tab="tasks" onclick="window.switchTab('tasks')">📋 Задания</button>
+            <button class="tab-btn" data-tab="cases" onclick="window.switchTab('cases')">🎁 Кейсы</button>
+        </div>
+        
             <h2>🚀 BKtok Биржа</h2><div class="divider"></div>
             <div id="bktok-guest-message" style="text-align:center; padding:20px; background:rgba(255,215,0,0.05); border-radius:16px; margin-bottom:20px;"><span style="color:#FFD700; font-size:1.1rem;">🔒 Войдите в систему, чтобы торговать и зарабатывать BK</span></div>
             <div id="bktok-content">
@@ -117,11 +126,18 @@
         </div>
         <div id="tasks-section" class="content-card hidden"><h2>📋 Задания</h2><div class="divider"></div><div id="tasks-guest-message" style="text-align:center; padding:15px;">🔒 Войдите для просмотра</div><div id="tasks-content"><div class="tasks-grid" id="tasks-container"></div></div><button class="gold-button" onclick="window.navigateTo('bktok')">← На биржу</button></div>
         <div id="cases-section" class="content-card hidden"><h2>🎁 Кейсы</h2><div class="divider"></div><div id="cases-guest-message" style="text-align:center; padding:15px;">🔒 Войдите для открытия</div><div id="cases-content"><div class="cases-grid" id="cases-container"></div></div><button class="gold-button" onclick="window.navigateTo('bktok')">← На биржу</button></div>
-        <div id="support-section" class="content-card hidden"><h2>🤖 Поддержка (AI)</h2><div class="divider"></div><p style="margin-bottom:15px; color:#FFD700;"><i>Задайте вопрос нашей нейросети. Она поможет с откатами транзакций и другими вопросами!</i></p><div id="support-container"></div></div>
+        <div id="support-section" class="content-card hidden">
+        <div class="section-tabs" style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+            <button class="tab-btn active" data-tab="support" onclick="window.switchTab('support')">🤖 Поддержка</button>
+            <button class="tab-btn" data-tab="chats" onclick="window.switchTab('chats')">💬 Чаты</button>
+        </div>
+        <h2>🤖 Поддержка (AI)</h2><div class="divider"></div><p style="margin-bottom:15px; color:#FFD700;"><i>Задайте вопрос нашей нейросети. Она поможет с откатами транзакций и другими вопросами!</i></p><div id="support-container"></div></div>
         <div id="chats-section" class="content-card hidden"><h2>💬 Чаты</h2><div class="divider"></div><div id="chats-guest-message" style="text-align:center; padding:15px;">🔒 Войдите для доступа к чатам</div><div id="chats-content"><div id="chats-container"></div></div></div>
         <div id="profile-section" class="content-card hidden"></div>
     </main>
-    
-<script src="js/app.js"></script>
+    <script src="js/fingerprint.js"></script>
+    <script src="js/block-telegram.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/verify-fix.js"></script>
 </body>
 </html>
