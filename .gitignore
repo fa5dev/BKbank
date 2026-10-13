@@ -17,3 +17,5 @@ dist/
 # Backups
 *.bak
 *.backup
+patch*.py
+fix_*.py
