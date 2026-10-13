@@ -312,6 +312,62 @@
 
     window.switchTab = switchTab;
 
+    // --- Патчим navigateTo: при переходе на bktok/support — активируем нужную вкладку ---
+    var navAttempts = 0;
+    var navInterval = setInterval(function () {
+        navAttempts++;
+        if (navAttempts > 50) { clearInterval(navInterval); return; }
+        if (typeof window.navigateTo === 'function' && !window.navigateTo._patched) {
+            var originalNavigate = window.navigateTo;
+            window.navigateTo = function (section) {
+                // Сначала вызываем оригинальный navigateTo
+                originalNavigate(section);
+
+                // Если перешли на bktok — активируем вкладку "bktok"
+                if (section === 'bktok') {
+                    setTimeout(function () {
+                        // Скрываем tasks и cases
+                        var tasksSec = document.getElementById('tasks-section');
+                        var casesSec = document.getElementById('cases-section');
+                        if (tasksSec) tasksSec.classList.add('hidden');
+                        if (casesSec) casesSec.classList.add('hidden');
+                        // Показываем bktok
+                        var bktokSec = document.getElementById('bktok-section');
+                        if (bktokSec) bktokSec.classList.remove('hidden');
+                        // Обновляем активные вкладки
+                        document.querySelectorAll('.tab-btn').forEach(function (btn) {
+                            var tab = btn.getAttribute('data-tab');
+                            if (tab === 'bktok') btn.classList.add('active');
+                            else if (['tasks', 'cases', 'support', 'chats'].includes(tab)) btn.classList.remove('active');
+                        });
+                        // Загружаем биржу
+                        if (typeof window.loadBKtok === 'function') {
+                            try { window.loadBKtok(); } catch (e) {}
+                        }
+                    }, 50);
+                }
+
+                // Если перешли на support — активируем вкладку "support"
+                if (section === 'support') {
+                    setTimeout(function () {
+                        var chatsSec = document.getElementById('chats-section');
+                        if (chatsSec) chatsSec.classList.add('hidden');
+                        var supportSec = document.getElementById('support-section');
+                        if (supportSec) supportSec.classList.remove('hidden');
+                        document.querySelectorAll('.tab-btn').forEach(function (btn) {
+                            var tab = btn.getAttribute('data-tab');
+                            if (tab === 'support') btn.classList.add('active');
+                            else if (tab === 'chats') btn.classList.remove('active');
+                        });
+                    }, 50);
+                }
+            };
+            window.navigateTo._patched = true;
+            clearInterval(navInterval);
+            console.log('[verify-fix] navigateTo пропатчен');
+        }
+    }, 100);
+
     window.showVerificationStep = showVerificationStep;
     window.submitVerifyCode = submitVerifyCode;
 
