@@ -19,3 +19,4 @@ dist/
 *.backup
 patch*.py
 fix_*.py
+inline_*.py
