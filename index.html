@@ -1,142 +1,142 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>BK-Bank — Финансы нового поколения</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com blob: 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src *; font-src 'self'; worker-src 'self' blob:;">
-    <link rel="manifest" href="manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="BK-Bank">
-    <meta name="theme-color" content="#0a0a0a">
-    <link rel="apple-touch-icon" href="assets/images/2025-01-31_14-13-47-Photoroom.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js">
-    </script>
-    <link rel="stylesheet" href="css/style.css">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+ <title>BK-Bank — Финансы нового поколения</title>
+ <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com blob: 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src *; font-src 'self'; worker-src 'self' blob:;">
+ <link rel="manifest" href="manifest.json">
+ <meta name="apple-mobile-web-app-capable" content="yes">
+ <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+ <meta name="apple-mobile-web-app-title" content="BK-Bank">
+ <meta name="theme-color" content="#0a0a0a">
+ <link rel="apple-touch-icon" href="assets/images/2025-01-31_14-13-47-Photoroom.png">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js">
+ </script>
+ <link rel="stylesheet" href="css/style.css">
 
-        <style>
-        .tab-btn { background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.2); color: #FFD700; padding: 10px 20px; border-radius: 40px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
-        .tab-btn:hover { background: rgba(255,215,0,0.15); }
-        .tab-btn.active { background: #FFD700; color: #0a0a0a; }
-        </style>
+ <style>
+ .tab-btn { background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.2); color: #FFD700; padding: 10px 20px; border-radius: 40px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+ .tab-btn:hover { background: rgba(255,215,0,0.15); }
+ .tab-btn.active { background: #FFD700; color: #0a0a0a; }
+ </style>
 </head>
 <body>
-    <div class="bg-glow"></div>
-    <div class="particle" style="top: 15%; left: 10%;"></div>
-    <div class="particle" style="top: 45%; left: 85%;"></div>
-    <div class="particle" style="top: 75%; left: 20%;"></div>
-    <header class="glass-header">
-        <div class="logo-wrapper">
-            <img src="assets/images/2025-01-31_14-13-47-Photoroom.png" class="logo-img" alt="BK-Bank">
-            <span class="bank-name">BK-Bank</span>
-            <button class="theme-toggle" onclick="window.toggleTheme()">🌙 Тема</button>
-        </div>
-        <nav class="nav-links">
-            <button class="nav-link" data-section="about" onclick="window.navigateTo('about')">Главная</button>
-            <button class="nav-link" data-section="services" onclick="window.navigateTo('services')">Услуги</button>
-            <button class="nav-link" data-section="cards" onclick="window.navigateTo('cards')">Карты</button>
-            <button class="nav-link" data-section="bktok" onclick="window.navigateTo('bktok')">Биржа</button>
-            <button class="nav-link" data-section="support" onclick="window.navigateTo('support')">Поддержка</button>
-            <div class="auth-buttons" id="auth-buttons">
-                <button class="login-btn" onclick="window.openModal('login')">Войти</button>
-                <button class="register-btn" onclick="window.openModal('register')">Регистрация</button>
-            </div>
-            <div class="profile-btn hidden" id="profile-btn-header" onclick="window.navigateTo('profile')">
-                <img id="header-avatar" src="assets/images/2025-01-30_17-50-13-Photoroom.png" alt="Аватар">
-                <span id="header-username">Кабинет</span>
-            </div>
-        </nav>
-    </header>
-    <main class="main-container">
-        <div id="about-section" class="content-card">
-            <h2>BK-BANK<br><span style="font-size: 1.2rem;">Банк, в котором ваш труд становится валютой</span></h2>
-            <div class="divider"></div>
-            <p style="font-size: 1.1rem; margin-bottom: 25px;"><strong>Ваш надёжный финансовый партнёр в мире, где ценность создаётся не печатным станком, а реальными действиями живых людей.</strong></p>
-            <p style="font-size: 1rem;">В BK-Bank мы понимаем: каждая покупка — это не просто транзакция, а часть Вашей жизни. Но мы пошли дальше. Мы первые, кто сказал: <span class="highlight">ваше время, ваше внимание и ваш ежедневный труд — это актив</span>. И мы научились превращать этот актив в реальную, растущую в цене валюту.</p>
-            <p style="margin-top: 20px; font-size: 1rem;"><strong>Добро пожаловать в первую в мире экосистему Labor-Backed Finance.</strong></p>
-            <h3>BK-TOKEN: ЭКОНОМИКА НА ВАШИХ УСИЛИЯХ</h3>
-            <p style="font-size: 1rem;">Всё гениальное просто. В традиционной экономике вы работаете — вам платят зарплату. В криптоэкономике вы покупаете токен в надежде, что он вырастет. Мы объединили эти две модели и убрали слабое звено — спекуляцию.</p>
-            <h4 style="color: #FFD700; margin: 25px 0 15px; font-size: 1.3rem;">Как это работает?</h4>
-            <p style="font-size: 1rem;"><span class="highlight">Токен даётся за задания.</span> Вы не покупаете BK-Token на бирже за свои кровные. Вы получаете его бесплатно, просто будучи активным участником экосистемы BK-Bank.</p>
-            <p style="margin-top: 20px; font-size: 1rem;"><span class="highlight">Цена строится из части труда.</span> Каждый выпущенный BK-Token — это оцифрованная и зафиксированная единица человеческого усилия.</p>
-            <div class="comparison-table">
-                <div class="comparison-item"><h4>Обычный токен</h4><p><span class="cross">✖</span> Цена зависит от хайпа</p><p><span class="cross">✖</span> Памп и дамп</p><p><span class="cross">✖</span> Ценность эфемерна</p></div>
-                <div class="comparison-item"><h4>BK-Token</h4><p><span class="check">✔</span> Цена зависит от заданий</p><p><span class="check">✔</span> Органический рост</p><p><span class="check">✔</span> Обеспечен трудом</p></div>
-            </div>
-            <p style="font-size: 1rem;"><span class="highlight">Это экономика, где ваш ежедневный труд — это майнинг.</span></p>
-            <h3>ФИЛОСОФИЯ BK-BANK</h3>
-            <div style="background: rgba(255,215,0,0.05); padding: 25px; border-radius: 20px; margin: 20px 0;"><p style="font-size: 1.2rem; font-style: italic;">«Я ношу карту. И эта карта не прячет мои покупки, но создаёт их оформление».</p><p style="margin-top: 15px; font-size: 1rem;">«И эта карта платит мне за то, что я просто живу и действую».</p></div>
-            <h3>НАШИ ПРЕИМУЩЕСТВА</h3>
-            <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin:20px 0;">
-                <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px;"><h4 style="color:#FFD700;">1. Приватность</h4><p>Ваши транзакции остаются вашей тайной. Мы не храним данные о ваших расходах в открытом виде. Все операции проходят через шифрованные каналы, а ваша личность защищена лучше, чем в швейцарском банке.</p></div>
-                <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px;"><h4 style="color:#FFD700;">2. Мост в Web3</h4><p>Ваша карта BK-Bank работает везде, где принимают обычные банковские карты. Но в отличие от них, ваши средства — это токенизированный труд. Вы можете в любой момент конвертировать BK-Token в фиат, криптовалюту или оставить его расти.</p></div>
-                <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px;"><h4 style="color:#FFD700;">3. Эстетика</h4><p>Карта BK-Bank — это не кусок пластика с чипом. Это артефакт. Минимализм, золотое сечение, тактильно приятный металл. Вы будете доставать её из кошелька с удовольствием. И она не просто красивая — она умная.</p></div>
-                <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px;"><h4 style="color:#FFD700;">4. Безопасность</h4><p>Защита активов на уровне лучших мировых стандартов: многофакторная аутентификация, холодное хранение криптоактивов, страхование средств на карте. Ваш труд надёжно защищён.</p></div>
-                <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px; grid-column: span 2;"><h4 style="color:#FFD700;">5. Сообщество</h4><p>Владельцы карт BK-Bank — это не просто клиенты. Это со-основатели ценности BK-Token. Ваша активность, ваши приглашения, ваше участие в жизни экосистемы напрямую влияют на курс токена. Мы строим экономику, где каждый участник — бенефициар.</p></div>
-            </div>
-            <div id="how-to-start-section">
-                <h3>КАК НАЧАТЬ?</h3>
-                <div style="display:flex; flex-wrap:wrap; gap:15px; margin:20px 0;">
-                    <div style="flex:1; min-width:150px; background:rgba(255,215,0,0.03); border-radius:16px; padding:20px; text-align:center;"><div style="width:45px; height:45px; background:#FFD700; color:#0a0a0a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; margin:0 auto 15px;">1</div><h4 style="color:#FFD700;">Регистрация</h4><p>2 минуты — и вы в системе.</p></div>
-                    <div style="flex:1; min-width:150px; background:rgba(255,215,0,0.03); border-radius:16px; padding:20px; text-align:center;"><div style="width:45px; height:45px; background:#FFD700; color:#0a0a0a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; margin:0 auto 15px;">2</div><h4 style="color:#FFD700;">Верификация</h4><p>Безопасный KYC за пару минут.</p></div>
-                    <div style="flex:1; min-width:150px; background:rgba(255,215,0,0.03); border-radius:16px; padding:20px; text-align:center;"><div style="width:45px; height:45px; background:#FFD700; color:#0a0a0a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; margin:0 auto 15px;">3</div><h4 style="color:#FFD700;">Первый токен</h4><p>Выполните задание — получите BK.</p></div>
-                    <div style="flex:1; min-width:150px; background:rgba(255,215,0,0.03); border-radius:16px; padding:20px; text-align:center;"><div style="width:45px; height:45px; background:#FFD700; color:#0a0a0a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; margin:0 auto 15px;">4</div><h4 style="color:#FFD700;">Рост</h4><p>Наблюдайте за ростом вашего капитала.</p></div>
-                </div>
-                <div style="text-align:center; margin-top:40px; padding:25px; background:linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,215,0,0.02)); border-radius:30px;">
-                    <h2 style="font-size:2rem;">BK-BANK: ВАШ ТРУД — НАША ВАЛЮТА</h2>
-                    <p style="font-size:1.1rem;">Присоединяйтесь к BK-Bank сегодня. Превратите свою ежедневную активность в растущий капитал.</p>
-                    <p style="margin-top:15px; color:#FFD700; font-size:1.1rem;"><strong>BK-Bank. Ваш надёжный финансовый партнёр. Создавайте ценность. Управляйте будущим.</strong></p>
-                    <button class="gold-button" style="width:auto; padding:16px 40px; margin-top:20px;" onclick="window.openModal('register')">✨ Открыть счёт ✨</button>
-                </div>
-            </div>
-        </div>
-        <div id="services-section" class="content-card hidden">
-            <h2>Наши услуги</h2><div class="divider"></div>
-            <div class="services-grid">
-                <div class="service-card"><div class="service-icon">💰</div><div class="service-content"><div class="service-title">Кредитование</div><div class="service-desc">Под залог BK-Token</div></div><span class="service-badge">до 1M ₽</span></div>
-                <div class="service-card"><div class="service-icon">📈</div><div class="service-content"><div class="service-title">Стейкинг</div><div class="service-desc">До 12% годовых</div></div><span class="service-badge">APY 12%</span></div>
-                <div class="service-card"><div class="service-icon">🌐</div><div class="service-content"><div class="service-title">Web3 корзины</div><div class="service-desc">Инвестиционные</div></div><span class="service-badge">NEW</span></div>
-                <div class="service-card"><div class="service-icon">💬</div><div class="service-content"><div class="service-title">Консультации</div><div class="service-desc">Персональные</div></div><span class="service-badge">24/7</span></div>
-                <div class="service-card"><div class="service-icon">💳</div><div class="service-content"><div class="service-title">Мультивалютные</div><div class="service-desc">Карты</div></div><span class="service-badge">VISA/MC</span></div>
-            </div>
-        </div>
-        <div id="cards-section" class="content-card hidden">
-            <h2>Эксклюзивные карты</h2><div class="divider"></div>
-            <p style="font-size:1rem;">Каждая карта — это ваш пропуск в мир, где труд конвертируется в капитал.</p>
-            <div id="cards-stack-container" style="display:flex; justify-content:center; margin:30px 0; position:relative; min-height:350px; perspective:1200px;"></div>
-            <div style="text-align:center;"><div style="background:rgba(255,215,0,0.05); border:1px solid rgba(255,215,0,0.2); border-radius:40px; padding:16px 30px; color:#FFD700; display:inline-block; font-size:1.1rem;"><strong>✨ Выберите карту ✨</strong></div></div>
-        </div>
-        <div id="bktok-section" class="content-card hidden">
-        <div class="section-tabs" style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
-            <button class="tab-btn active" data-tab="bktok" onclick="window.switchTab('bktok')">📈 Биржа</button>
-            <button class="tab-btn" data-tab="tasks" onclick="window.switchTab('tasks')">📋 Задания</button>
-            <button class="tab-btn" data-tab="cases" onclick="window.switchTab('cases')">🎁 Кейсы</button>
-        </div>
-        
-            <h2>🚀 BKtok Биржа</h2><div class="divider"></div>
-            <div id="bktok-guest-message" style="text-align:center; padding:20px; background:rgba(255,215,0,0.05); border-radius:16px; margin-bottom:20px;"><span style="color:#FFD700; font-size:1.1rem;">🔒 Войдите в систему, чтобы торговать и зарабатывать BK</span></div>
-            <div id="bktok-content">
-                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom:25px;"><div><span style="color:#888; font-size:1rem;">Ваш баланс:</span><div class="token-balance sensitive-data" id="token-balance-display">0 BK</div></div><div style="display:flex; gap:10px;"><button class="gold-button" style="width:auto; padding:12px 24px;" onclick="window.navigateTo('tasks')">📋 Задания</button><button class="gold-button" style="width:auto; padding:12px 24px;" onclick="window.navigateTo('cases')">🎁 Кейсы</button></div></div>
-                <div class="chart-container"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;"><h3 style="margin:0;">📈 График BK / RUB</h3><div class="chart-controls"><button class="chart-period active" onclick="window.changeChartPeriod('1H', event)">1Ч</button><button class="chart-period" onclick="window.changeChartPeriod('6H', event)">6Ч</button><button class="chart-period" onclick="window.changeChartPeriod('24H', event)">24Ч</button><button class="chart-period" onclick="window.changeChartPeriod('1W', event)">1Н</button></div></div><div class="chart-bars" id="chart-bars"></div><div class="chart-stats"><div class="chart-stat"><div class="chart-stat-label">Открытие</div><div class="chart-stat-value" id="chart-open">0</div></div><div class="chart-stat"><div class="chart-stat-label">Максимум</div><div class="chart-stat-value" id="chart-high">0</div></div><div class="chart-stat"><div class="chart-stat-label">Минимум</div><div class="chart-stat-value" id="chart-low">0</div></div><div class="chart-stat"><div class="chart-stat-label">Изменение</div><div class="chart-stat-value" id="chart-change">0%</div></div></div></div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:25px;"><div><h4>📊 Стакан заявок</h4><div class="order-book"><div class="order-side"><h5 style="color:#4ade80;">Покупка</h5><div id="buy-orders"></div></div><div class="order-side"><h5 style="color:#ff5e5e;">Продажа</h5><div id="sell-orders"></div></div></div></div><div><h4>📝 Создать заявку</h4><div style="background:rgba(0,0,0,0.2); border-radius:16px; padding:20px;"><input type="number" id="order-price" class="form-input" placeholder="Цена за 1 BK (RUB)"><input type="number" id="order-amount" class="form-input" placeholder="Количество BK"><div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;"><button class="gold-button" style="background:#4ade80;" onclick="window.createOrder('buy')">Купить</button><button class="gold-button" style="background:#ff5e5e;" onclick="window.createOrder('sell')">Продать</button></div><p style="margin-top:15px; font-size:0.9rem; color:#888;">Комиссия: 0.1%</p></div></div></div>
-                <div style="margin-top:25px;"><h4>📋 Мои активные ордера</h4><div id="my-orders" style="max-height:150px; overflow-y:auto;"></div></div>
-                <div style="margin-top:20px;"><h4>📜 История сделок</h4><div id="trade-history" style="max-height:150px; overflow-y:auto;"></div></div>
-            </div>
-        </div>
-        <div id="tasks-section" class="content-card hidden"><h2>📋 Задания</h2><div class="divider"></div><div id="tasks-guest-message" style="text-align:center; padding:15px;">🔒 Войдите для просмотра</div><div id="tasks-content"><div class="tasks-grid" id="tasks-container"></div></div><button class="gold-button" onclick="window.navigateTo('bktok')">← На биржу</button></div>
-        <div id="cases-section" class="content-card hidden"><h2>🎁 Кейсы</h2><div class="divider"></div><div id="cases-guest-message" style="text-align:center; padding:15px;">🔒 Войдите для открытия</div><div id="cases-content"><div class="cases-grid" id="cases-container"></div></div><button class="gold-button" onclick="window.navigateTo('bktok')">← На биржу</button></div>
-        <div id="support-section" class="content-card hidden">
-        <div class="section-tabs" style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
-            <button class="tab-btn active" data-tab="support" onclick="window.switchTab('support')">🤖 Поддержка</button>
-            <button class="tab-btn" data-tab="chats" onclick="window.switchTab('chats')">💬 Чаты</button>
-        </div>
-        <h2>🤖 Поддержка (AI)</h2><div class="divider"></div><p style="margin-bottom:15px; color:#FFD700;"><i>Задайте вопрос нашей нейросети. Она поможет с откатами транзакций и другими вопросами!</i></p><div id="support-container"></div></div>
-        <div id="chats-section" class="content-card hidden"><h2>💬 Чаты</h2><div class="divider"></div><div id="chats-guest-message" style="text-align:center; padding:15px;">🔒 Войдите для доступа к чатам</div><div id="chats-content"><div id="chats-container"></div></div></div>
-        <div id="profile-section" class="content-card hidden"></div>
-    </main>
-    <script src="js/block-telegram.js"></script>
-    <script>
+ <div class="bg-glow"></div>
+ <div class="particle" style="top: 15%; left: 10%;"></div>
+ <div class="particle" style="top: 45%; left: 85%;"></div>
+ <div class="particle" style="top: 75%; left: 20%;"></div>
+ <header class="glass-header">
+ <div class="logo-wrapper">
+ <img src="assets/images/2025-01-31_14-13-47-Photoroom.png" class="logo-img" alt="BK-Bank">
+ <span class="bank-name">BK-Bank</span>
+ <button class="theme-toggle" onclick="window.toggleTheme()">🌙 Тема</button>
+ </div>
+ <nav class="nav-links">
+ <button class="nav-link" data-section="about" onclick="window.navigateTo('about')">Главная</button>
+ <button class="nav-link" data-section="services" onclick="window.navigateTo('services')">Услуги</button>
+ <button class="nav-link" data-section="cards" onclick="window.navigateTo('cards')">Карты</button>
+ <button class="nav-link" data-section="bktok" onclick="window.navigateTo('bktok')">Биржа</button>
+ <button class="nav-link" data-section="support" onclick="window.navigateTo('support')">Поддержка</button>
+ <div class="auth-buttons" id="auth-buttons">
+ <button class="login-btn" onclick="window.openModal('login')">Войти</button>
+ <button class="register-btn" onclick="window.openModal('register')">Регистрация</button>
+ </div>
+ <div class="profile-btn hidden" id="profile-btn-header" onclick="window.navigateTo('profile')">
+ <img id="header-avatar" src="assets/images/2025-01-30_17-50-13-Photoroom.png" alt="Аватар">
+ <span id="header-username">Кабинет</span>
+ </div>
+ </nav>
+ </header>
+ <main class="main-container">
+ <div id="about-section" class="content-card">
+ <h2>BK-BANK<br><span style="font-size: 1.2rem;">Банк, в котором ваш труд становится валютой</span></h2>
+ <div class="divider"></div>
+ <p style="font-size: 1.1rem; margin-bottom: 25px;"><strong>Ваш надёжный финансовый партнёр в мире, где ценность создаётся не печатным станком, а реальными действиями живых людей.</strong></p>
+ <p style="font-size: 1rem;">В BK-Bank мы понимаем: каждая покупка — это не просто транзакция, а часть Вашей жизни. Но мы пошли дальше. Мы первые, кто сказал: <span class="highlight">ваше время, ваше внимание и ваш ежедневный труд — это актив</span>. И мы научились превращать этот актив в реальную, растущую в цене валюту.</p>
+ <p style="margin-top: 20px; font-size: 1rem;"><strong>Добро пожаловать в первую в мире экосистему Labor-Backed Finance.</strong></p>
+ <h3>BK-TOKEN: ЭКОНОМИКА НА ВАШИХ УСИЛИЯХ</h3>
+ <p style="font-size: 1rem;">Всё гениальное просто. В традиционной экономике вы работаете — вам платят зарплату. В криптоэкономике вы покупаете токен в надежде, что он вырастет. Мы объединили эти две модели и убрали слабое звено — спекуляцию.</p>
+ <h4 style="color: #FFD700; margin: 25px 0 15px; font-size: 1.3rem;">Как это работает?</h4>
+ <p style="font-size: 1rem;"><span class="highlight">Токен даётся за задания.</span> Вы не покупаете BK-Token на бирже за свои кровные. Вы получаете его бесплатно, просто будучи активным участником экосистемы BK-Bank.</p>
+ <p style="margin-top: 20px; font-size: 1rem;"><span class="highlight">Цена строится из части труда.</span> Каждый выпущенный BK-Token — это оцифрованная и зафиксированная единица человеческого усилия.</p>
+ <div class="comparison-table">
+ <div class="comparison-item"><h4>Обычный токен</h4><p><span class="cross">✖</span> Цена зависит от хайпа</p><p><span class="cross">✖</span> Памп и дамп</p><p><span class="cross">✖</span> Ценность эфемерна</p></div>
+ <div class="comparison-item"><h4>BK-Token</h4><p><span class="check">✔</span> Цена зависит от заданий</p><p><span class="check">✔</span> Органический рост</p><p><span class="check">✔</span> Обеспечен трудом</p></div>
+ </div>
+ <p style="font-size: 1rem;"><span class="highlight">Это экономика, где ваш ежедневный труд — это майнинг.</span></p>
+ <h3>ФИЛОСОФИЯ BK-BANK</h3>
+ <div style="background: rgba(255,215,0,0.05); padding: 25px; border-radius: 20px; margin: 20px 0;"><p style="font-size: 1.2rem; font-style: italic;">«Я ношу карту. И эта карта не прячет мои покупки, но создаёт их оформление».</p><p style="margin-top: 15px; font-size: 1rem;">«И эта карта платит мне за то, что я просто живу и действую».</p></div>
+ <h3>НАШИ ПРЕИМУЩЕСТВА</h3>
+ <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin:20px 0;">
+ <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px;"><h4 style="color:#FFD700;">1. Приватность</h4><p>Ваши транзакции остаются вашей тайной. Мы не храним данные о ваших расходах в открытом виде. Все операции проходят через шифрованные каналы, а ваша личность защищена лучше, чем в швейцарском банке.</p></div>
+ <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px;"><h4 style="color:#FFD700;">2. Мост в Web3</h4><p>Ваша карта BK-Bank работает везде, где принимают обычные банковские карты. Но в отличие от них, ваши средства — это токенизированный труд. Вы можете в любой момент конвертировать BK-Token в фиат, криптовалюту или оставить его расти.</p></div>
+ <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px;"><h4 style="color:#FFD700;">3. Эстетика</h4><p>Карта BK-Bank — это не кусок пластика с чипом. Это артефакт. Минимализм, золотое сечение, тактильно приятный металл. Вы будете доставать её из кошелька с удовольствием. И она не просто красивая — она умная.</p></div>
+ <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px;"><h4 style="color:#FFD700;">4. Безопасность</h4><p>Защита активов на уровне лучших мировых стандартов: многофакторная аутентификация, холодное хранение криптоактивов, страхование средств на карте. Ваш труд надёжно защищён.</p></div>
+ <div style="background:rgba(255,215,0,0.03); border-radius:16px; padding:18px; grid-column: span 2;"><h4 style="color:#FFD700;">5. Сообщество</h4><p>Владельцы карт BK-Bank — это не просто клиенты. Это со-основатели ценности BK-Token. Ваша активность, ваши приглашения, ваше участие в жизни экосистемы напрямую влияют на курс токена. Мы строим экономику, где каждый участник — бенефициар.</p></div>
+ </div>
+ <div id="how-to-start-section">
+ <h3>КАК НАЧАТЬ?</h3>
+ <div style="display:flex; flex-wrap:wrap; gap:15px; margin:20px 0;">
+ <div style="flex:1; min-width:150px; background:rgba(255,215,0,0.03); border-radius:16px; padding:20px; text-align:center;"><div style="width:45px; height:45px; background:#FFD700; color:#0a0a0a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; margin:0 auto 15px;">1</div><h4 style="color:#FFD700;">Регистрация</h4><p>2 минуты — и вы в системе.</p></div>
+ <div style="flex:1; min-width:150px; background:rgba(255,215,0,0.03); border-radius:16px; padding:20px; text-align:center;"><div style="width:45px; height:45px; background:#FFD700; color:#0a0a0a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; margin:0 auto 15px;">2</div><h4 style="color:#FFD700;">Верификация</h4><p>Безопасный KYC за пару минут.</p></div>
+ <div style="flex:1; min-width:150px; background:rgba(255,215,0,0.03); border-radius:16px; padding:20px; text-align:center;"><div style="width:45px; height:45px; background:#FFD700; color:#0a0a0a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; margin:0 auto 15px;">3</div><h4 style="color:#FFD700;">Первый токен</h4><p>Выполните задание — получите BK.</p></div>
+ <div style="flex:1; min-width:150px; background:rgba(255,215,0,0.03); border-radius:16px; padding:20px; text-align:center;"><div style="width:45px; height:45px; background:#FFD700; color:#0a0a0a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; margin:0 auto 15px;">4</div><h4 style="color:#FFD700;">Рост</h4><p>Наблюдайте за ростом вашего капитала.</p></div>
+ </div>
+ <div style="text-align:center; margin-top:40px; padding:25px; background:linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,215,0,0.02)); border-radius:30px;">
+ <h2 style="font-size:2rem;">BK-BANK: ВАШ ТРУД — НАША ВАЛЮТА</h2>
+ <p style="font-size:1.1rem;">Присоединяйтесь к BK-Bank сегодня. Превратите свою ежедневную активность в растущий капитал.</p>
+ <p style="margin-top:15px; color:#FFD700; font-size:1.1rem;"><strong>BK-Bank. Ваш надёжный финансовый партнёр. Создавайте ценность. Управляйте будущим.</strong></p>
+ <button class="gold-button" style="width:auto; padding:16px 40px; margin-top:20px;" onclick="window.openModal('register')"> Открыть счёт </button>
+ </div>
+ </div>
+ </div>
+ <div id="services-section" class="content-card hidden">
+ <h2>Наши услуги</h2><div class="divider"></div>
+ <div class="services-grid">
+ <div class="service-card"><div class="service-icon"></div><div class="service-content"><div class="service-title">Кредитование</div><div class="service-desc">Под залог BK-Token</div></div><span class="service-badge">до 1M ₽</span></div>
+ <div class="service-card"><div class="service-icon"></div><div class="service-content"><div class="service-title">Стейкинг</div><div class="service-desc">До 12% годовых</div></div><span class="service-badge">APY 12%</span></div>
+ <div class="service-card"><div class="service-icon"></div><div class="service-content"><div class="service-title">Web3 корзины</div><div class="service-desc">Инвестиционные</div></div><span class="service-badge">NEW</span></div>
+ <div class="service-card"><div class="service-icon"></div><div class="service-content"><div class="service-title">Консультации</div><div class="service-desc">Персональные</div></div><span class="service-badge">24/7</span></div>
+ <div class="service-card"><div class="service-icon"></div><div class="service-content"><div class="service-title">Мультивалютные</div><div class="service-desc">Карты</div></div><span class="service-badge">VISA/MC</span></div>
+ </div>
+ </div>
+ <div id="cards-section" class="content-card hidden">
+ <h2>Эксклюзивные карты</h2><div class="divider"></div>
+ <p style="font-size:1rem;">Каждая карта — это ваш пропуск в мир, где труд конвертируется в капитал.</p>
+ <div id="cards-stack-container" style="display:flex; justify-content:center; margin:30px 0; position:relative; min-height:350px; perspective:1200px;"></div>
+ <div style="text-align:center;"><div style="background:rgba(255,215,0,0.05); border:1px solid rgba(255,215,0,0.2); border-radius:40px; padding:16px 30px; color:#FFD700; display:inline-block; font-size:1.1rem;"><strong> Выберите карту </strong></div></div>
+ </div>
+ <div id="bktok-section" class="content-card hidden">
+ <div class="section-tabs" style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+ <button class="tab-btn active" data-tab="bktok" onclick="window.switchTab('bktok')"> Биржа</button>
+ <button class="tab-btn" data-tab="tasks" onclick="window.switchTab('tasks')"> Задания</button>
+ <button class="tab-btn" data-tab="cases" onclick="window.switchTab('cases')"> Кейсы</button>
+ </div>
+ 
+ <h2> BKtok Биржа</h2><div class="divider"></div>
+ <div id="bktok-guest-message" style="text-align:center; padding:20px; background:rgba(255,215,0,0.05); border-radius:16px; margin-bottom:20px;"><span style="color:#FFD700; font-size:1.1rem;"> Войдите в систему, чтобы торговать и зарабатывать BK</span></div>
+ <div id="bktok-content">
+ <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom:25px;"><div><span style="color:#888; font-size:1rem;">Ваш баланс:</span><div class="token-balance sensitive-data" id="token-balance-display">0 BK</div></div><div style="display:flex; gap:10px;"><button class="gold-button" style="width:auto; padding:12px 24px;" onclick="window.navigateTo('tasks')"> Задания</button><button class="gold-button" style="width:auto; padding:12px 24px;" onclick="window.navigateTo('cases')"> Кейсы</button></div></div>
+ <div class="chart-container"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;"><h3 style="margin:0;"> График BK / RUB</h3><div class="chart-controls"><button class="chart-period active" onclick="window.changeChartPeriod('1H', event)">1Ч</button><button class="chart-period" onclick="window.changeChartPeriod('6H', event)">6Ч</button><button class="chart-period" onclick="window.changeChartPeriod('24H', event)">24Ч</button><button class="chart-period" onclick="window.changeChartPeriod('1W', event)">1Н</button></div></div><div class="chart-bars" id="chart-bars"></div><div class="chart-stats"><div class="chart-stat"><div class="chart-stat-label">Открытие</div><div class="chart-stat-value" id="chart-open">0</div></div><div class="chart-stat"><div class="chart-stat-label">Максимум</div><div class="chart-stat-value" id="chart-high">0</div></div><div class="chart-stat"><div class="chart-stat-label">Минимум</div><div class="chart-stat-value" id="chart-low">0</div></div><div class="chart-stat"><div class="chart-stat-label">Изменение</div><div class="chart-stat-value" id="chart-change">0%</div></div></div></div>
+ <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:25px;"><div><h4> Стакан заявок</h4><div class="order-book"><div class="order-side"><h5 style="color:#4ade80;">Покупка</h5><div id="buy-orders"></div></div><div class="order-side"><h5 style="color:#ff5e5e;">Продажа</h5><div id="sell-orders"></div></div></div></div><div><h4> Создать заявку</h4><div style="background:rgba(0,0,0,0.2); border-radius:16px; padding:20px;"><input type="number" id="order-price" class="form-input" placeholder="Цена за 1 BK (RUB)"><input type="number" id="order-amount" class="form-input" placeholder="Количество BK"><div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;"><button class="gold-button" style="background:#4ade80;" onclick="window.createOrder('buy')">Купить</button><button class="gold-button" style="background:#ff5e5e;" onclick="window.createOrder('sell')">Продать</button></div><p style="margin-top:15px; font-size:0.9rem; color:#888;">Комиссия: 0.1%</p></div></div></div>
+ <div style="margin-top:25px;"><h4> Мои активные ордера</h4><div id="my-orders" style="max-height:150px; overflow-y:auto;"></div></div>
+ <div style="margin-top:20px;"><h4> История сделок</h4><div id="trade-history" style="max-height:150px; overflow-y:auto;"></div></div>
+ </div>
+ </div>
+ <div id="tasks-section" class="content-card hidden"><h2> Задания</h2><div class="divider"></div><div id="tasks-guest-message" style="text-align:center; padding:15px;"> Войдите для просмотра</div><div id="tasks-content"><div class="tasks-grid" id="tasks-container"></div></div><button class="gold-button" onclick="window.navigateTo('bktok')">← На биржу</button></div>
+ <div id="cases-section" class="content-card hidden"><h2> Кейсы</h2><div class="divider"></div><div id="cases-guest-message" style="text-align:center; padding:15px;"> Войдите для открытия</div><div id="cases-content"><div class="cases-grid" id="cases-container"></div></div><button class="gold-button" onclick="window.navigateTo('bktok')">← На биржу</button></div>
+ <div id="support-section" class="content-card hidden">
+ <div class="section-tabs" style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+ <button class="tab-btn active" data-tab="support" onclick="window.switchTab('support')"> Поддержка</button>
+ <button class="tab-btn" data-tab="chats" onclick="window.switchTab('chats')"> Чаты</button>
+ </div>
+ <h2> Поддержка (AI)</h2><div class="divider"></div><p style="margin-bottom:15px; color:#FFD700;"><i>Задайте вопрос нашей нейросети. Она поможет с откатами транзакций и другими вопросами!</i></p><div id="support-container"></div></div>
+ <div id="chats-section" class="content-card hidden"><h2> Чаты</h2><div class="divider"></div><div id="chats-guest-message" style="text-align:center; padding:15px;"> Войдите для доступа к чатам</div><div id="chats-content"><div id="chats-container"></div></div></div>
+ <div id="profile-section" class="content-card hidden"></div>
+ </main>
+ <script src="js/block-telegram.js"></script>
+ <script>
 // ============================================================================
 // js/fingerprint.js — Клиентская верификация устройств
 // ============================================================================
@@ -145,165 +145,166 @@
 // ============================================================================
 
 (function () {
-    'use strict';
+ 'use strict';
 
-    const DEVICE_KEY = 'bk_device_id';
-    const FP_KEY = 'bk_fingerprint';
-    const REG_LOG_KEY = 'bk_registration_log';
-    const COOLDOWN_MS = 60 * 60 * 1000; // 1 час между регистрациями
+ const DEVICE_KEY = 'bk_device_id';
+ const FP_KEY = 'bk_fingerprint';
+ const REG_LOG_KEY = 'bk_registration_log';
+ const COOLDOWN_MS = 60 * 60 * 1000; // 1 час между регистрациями
 
-    // Генерация UUID v4
-    function uuidv4() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            const r = (Math.random() * 16) | 0;
-            const v = c === 'x' ? r : (r & 0x3) | 0x8;
-            return v.toString(16);
-        });
-    }
+ // Генерация UUID v4
+ function uuidv4() {
+ return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+ const r = (Math.random() * 16) | 0;
+ const v = c === 'x' ? r : (r & 0x3) | 0x8;
+ return v.toString(16);
+ });
+ }
 
-    // Получить или создать deviceId
-    function getDeviceId() {
-        let id = localStorage.getItem(DEVICE_KEY);
-        if (!id) {
-            id = uuidv4();
-            try {
-                localStorage.setItem(DEVICE_KEY, id);
-            } catch (e) {
-                console.warn('[fingerprint] localStorage недоступен');
-            }
-        }
-        return id;
-    }
+ // Получить или создать deviceId
+ function getDeviceId() {
+ let id = localStorage.getItem(DEVICE_KEY);
+ if (!id) {
+ id = uuidv4();
+ try {
+ localStorage.setItem(DEVICE_KEY, id);
+ } catch (e) {
+ console.warn('[fingerprint] localStorage недоступен');
+ }
+ }
+ return id;
+ }
 
-    // Собрать отпечаток браузера
-    function getFingerprint() {
-        const cached = localStorage.getItem(FP_KEY);
-        if (cached) return cached;
+ // Собрать отпечаток браузера
+ function getFingerprint() {
+ const cached = localStorage.getItem(FP_KEY);
+ if (cached) return cached;
 
-        const parts = [
-            navigator.userAgent || '',
-            navigator.language || '',
-            navigator.hardwareConcurrency || '',
-            screen.width + 'x' + screen.height,
-            screen.colorDepth || '',
-            new Date().getTimezoneOffset(),
-            Intl.DateTimeFormat().resolvedOptions().timeZone || '',
-            navigator.platform || '',
-        ];
+ const parts = [
+ navigator.userAgent || '',
+ navigator.language || '',
+ navigator.hardwareConcurrency || '',
+ screen.width + 'x' + screen.height,
+ screen.colorDepth || '',
+ new Date().getTimezoneOffset(),
+ Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+ navigator.platform || '',
+ ];
 
-        // Canvas fingerprint
-        try {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            ctx.textBaseline = 'top';
-            ctx.font = '14px Arial';
-            ctx.fillStyle = '#f60';
-            ctx.fillRect(125, 1, 62, 20);
-            ctx.fillStyle = '#069';
-            ctx.fillText('BK-Bank fingerprint', 2, 15);
-            parts.push(canvas.toDataURL().slice(-50));
-        } catch (e) {
-            parts.push('no-canvas');
-        }
+ // Canvas fingerprint
+ try {
+ const canvas = document.createElement('canvas');
+ const ctx = canvas.getContext('2d');
+ ctx.textBaseline = 'top';
+ ctx.font = '14px Arial';
+ ctx.fillStyle = '#f60';
+ ctx.fillRect(125, 1, 62, 20);
+ ctx.fillStyle = '#069';
+ ctx.fillText('BK-Bank fingerprint', 2, 15);
+ parts.push(canvas.toDataURL().slice(-50));
+ } catch (e) {
+ parts.push('no-canvas');
+ }
 
-        const raw = parts.join('|');
-        // Простой хеш (не криптографический)
-        let hash = 0;
-        for (let i = 0; i < raw.length; i++) {
-            hash = (hash << 5) - hash + raw.charCodeAt(i);
-            hash |= 0;
-        }
-        const fp = 'fp_' + Math.abs(hash).toString(36);
+ const raw = parts.join('|');
+ // Простой хеш (не криптографический)
+ let hash = 0;
+ for (let i = 0; i < raw.length; i++) {
+ hash = (hash << 5) - hash + raw.charCodeAt(i);
+ hash |= 0;
+ }
+ const fp = 'fp_' + Math.abs(hash).toString(36);
 
-        try {
-            localStorage.setItem(FP_KEY, fp);
-        } catch (e) {}
+ try {
+ localStorage.setItem(FP_KEY, fp);
+ } catch (e) {}
 
-        return fp;
-    }
+ return fp;
+ }
 
-    // Загрузить журнал регистраций
-    function getRegistrationLog() {
-        try {
-            return JSON.parse(localStorage.getItem(REG_LOG_KEY) || '[]');
-        } catch (e) {
-            return [];
-        }
-    }
+ // Загрузить журнал регистраций
+ function getRegistrationLog() {
+ try {
+ return JSON.parse(localStorage.getItem(REG_LOG_KEY) || '[]');
+ } catch (e) {
+ return [];
+ }
+ }
 
-    // Сохранить журнал регистраций
-    function saveRegistrationLog(log) {
-        try {
-            localStorage.setItem(REG_LOG_KEY, JSON.stringify(log));
-        } catch (e) {}
-    }
+ // Сохранить журнал регистраций
+ function saveRegistrationLog(log) {
+ try {
+ localStorage.setItem(REG_LOG_KEY, JSON.stringify(log));
+ } catch (e) {}
+ }
 
-    // Проверка: зарегистрирован ли deviceId
-    function isDeviceRegistered() {
-        const id = getDeviceId();
-        const fp = getFingerprint();
-        const log = getRegistrationLog();
-        return log.some(function (entry) {
-            return entry.deviceId === id || entry.fingerprint === fp;
-        });
-    }
+ // Проверка: зарегистрирован ли deviceId
+ function isDeviceRegistered() {
+ const id = getDeviceId();
+ const fp = getFingerprint();
+ const log = getRegistrationLog();
+ return log.some(function (entry) {
+ return entry.deviceId === id || entry.fingerprint === fp;
+ });
+ }
 
-    // Проверка: можно ли регистрироваться (кулдаун)
-    function canRegister() {
-        const log = getRegistrationLog();
-        if (log.length === 0) return { ok: true };
+ // Проверка: можно ли регистрироваться (кулдаун)
+ function canRegister() {
+ const log = getRegistrationLog();
+ if (log.length === 0) return { ok: true };
 
-        if (isDeviceRegistered()) {
-            return { ok: false, reason: 'На этом устройстве уже есть аккаунт BK-Bank.' };
-        }
+ if (isDeviceRegistered()) {
+ return { ok: false, reason: 'На этом устройстве уже есть аккаунт BK-Bank.' };
+ }
 
-        const last = log[log.length - 1];
-        if (last && last.timestamp) {
-            const elapsed = Date.now() - last.timestamp;
-            if (elapsed < COOLDOWN_MS) {
-                const left = Math.ceil((COOLDOWN_MS - elapsed) / 60000);
-                return { ok: false, reason: 'Подождите ' + left + ' мин. перед новой регистрацией.' };
-            }
-        }
+ const last = log[log.length - 1];
+ if (last && last.timestamp) {
+ const elapsed = Date.now() - last.timestamp;
+ if (elapsed < COOLDOWN_MS) {
+ const left = Math.ceil((COOLDOWN_MS - elapsed) / 60000);
+ return { ok: false, reason: 'Подождите ' + left + ' мин. перед новой регистрацией.' };
+ }
+ }
 
-        return { ok: true };
-    }
+ return { ok: true };
+ }
 
-    // Отметить устройство как зарегистрированное
-    function markDeviceRegistered(username) {
-        const log = getRegistrationLog();
-        log.push({
-            deviceId: getDeviceId(),
-            fingerprint: getFingerprint(),
-            username: username,
-            timestamp: Date.now(),
-            userAgent: navigator.userAgent.slice(0, 100),
-        });
-        saveRegistrationLog(log);
-    }
+ // Отметить устройство как зарегистрированное
+ function markDeviceRegistered(username) {
+ const log = getRegistrationLog();
+ log.push({
+ deviceId: getDeviceId(),
+ fingerprint: getFingerprint(),
+ username: username,
+ timestamp: Date.now(),
+ userAgent: navigator.userAgent.slice(0, 100),
+ });
+ saveRegistrationLog(log);
+ }
 
-    // Сброс (для отладки)
-    function resetRegistrationLog() {
-        try {
-            localStorage.removeItem(REG_LOG_KEY);
-        } catch (e) {}
-    }
+ // Сброс (для отладки)
+ function resetRegistrationLog() {
+ try {
+ localStorage.removeItem(REG_LOG_KEY);
+ } catch (e) {}
+ }
 
-    // Экспорт в window
-    window.BKFingerprint = {
-        getDeviceId,
-        getFingerprint,
-        isDeviceRegistered,
-        canRegister,
-        markDeviceRegistered,
-        resetRegistrationLog,
-    };
+ // Экспорт в window
+ window.BKFingerprint = {
+ getDeviceId,
+ getFingerprint,
+ isDeviceRegistered,
+ canRegister,
+ markDeviceRegistered,
+ resetRegistrationLog,
+ };
 
-    console.log('[fingerprint] Модуль верификации устройств загружен');
+ console.log('[fingerprint] Модуль верификации устройств загружен');
 })();
 
-    </script>
-    <script src="js/app.js"></script>
-    <script src="js/verify-fix.js"></script>
+ </script>
+ <script src="js/app.js"></script>
+ <script src="js/verify-fix.js"></script>
+ <script src="js/bat-animation.js"></script>
 </body>
 </html>
