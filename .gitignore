@@ -1,22 +1,25 @@
-*.bak
-split_html.py
+# Python
 __pycache__/
-.DS_Store
-Thumbs.db
-# Node / build
-node_modules/
-dist/
-*.log
+*.py[cod]
+patch*.py
+fix_*.py
+inline_*.py
+cleanup*.py
+split_html.py
+
+# Backups
+*.bak
+*.backup
 
 # OS / editor
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/
 *.swp
 *~
 
-# Backups
-*.bak
-*.backup
-patch*.py
-fix_*.py
-inline_*.py
+# Node / build
+node_modules/
+dist/
+*.log
