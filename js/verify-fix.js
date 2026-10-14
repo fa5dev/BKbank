@@ -192,15 +192,63 @@
  if (typeof window.finishRegistrationAfterVerify === 'function' && !window.finishRegistrationAfterVerify._patched) {
  var original = window.finishRegistrationAfterVerify;
  window.finishRegistrationAfterVerify = async function (username) {
- await original(username);
- if (window.BKFingerprint) {
- try {
- window.BKFingerprint.markDeviceRegistered(username);
- console.log('[verify-fix] Устройство отмечено:', username);
- } catch (e) {
- console.error('[verify-fix] markDeviceRegistered error:', e);
- }
- }
+     // 1. Генерируем резервный код
+     var recoveryCode = null;
+     var recoveryHash = null;
+     if (window.BKRecovery) {
+         recoveryCode = window.BKRecovery.generateRecoveryCode();
+         recoveryHash = window.BKRecovery.hashRecoveryCode(recoveryCode);
+     }
+
+     await original(username);
+
+     // 2. Сохраняем хеш резервного кода
+     if (recoveryHash) {
+         try {
+             localStorage.setItem('recoveryCodeHash_' + username, recoveryHash);
+
+                    // Сохраняем данные для сброса пароля
+                    try {
+                        var rawBankUsers = localStorage.getItem('bankUsers');
+                        var dataKeyEncrypted = localStorage.getItem('dataKey_' + username);
+                        var userSalt = (typeof getUserSalt === 'function') ? getUserSalt(username) : '';
+                        localStorage.setItem('recoveryData_' + username, JSON.stringify({
+                            bankUsersRaw: rawBankUsers,
+                            dataKeyEncrypted: dataKeyEncrypted,
+                            salt: userSalt,
+                            timestamp: Date.now()
+                        }));
+                        console.log('[verify-fix] recoveryData сохранён для:', username);
+                    } catch (e2) {
+                        console.error('[verify-fix] Ошибка recoveryData:', e2);
+                    }
+             console.log('[verify-fix] Резервный код сохранён для:', username);
+         } catch (e) {
+             console.error('[verify-fix] Ошибка сохранения кода:', e);
+         }
+     }
+
+     // 3. markDeviceRegistered
+     if (window.BKFingerprint) {
+         try {
+             window.BKFingerprint.markDeviceRegistered(username);
+             console.log('[verify-fix] Устройство отмечено:', username);
+         } catch (e) {
+             console.error('[verify-fix] markDeviceRegistered error:', e);
+         }
+     }
+
+     // 4. Показываем модалку с резервным кодом
+     if (recoveryCode && window.BKRecovery) {
+         setTimeout(function () {
+             try {
+                 window.BKRecovery.showRecoveryCodeModal(username, recoveryCode);
+                 console.log('[verify-fix] Модалка с кодом показана');
+             } catch (e) {
+                 console.error('[verify-fix] Ошибка показа модалки:', e);
+             }
+         }, 1500);
+     }
  };
  window.finishRegistrationAfterVerify._patched = true;
  clearInterval(patchInterval);
