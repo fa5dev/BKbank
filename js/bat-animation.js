@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    var BAT_IMAGE = 'assets/images/2025-01-31_14-13-47-Photoroom.png';
+    var BAT_IMAGE = 'assets/images/logo.png';
 
     function flyBat() {
         if (sessionStorage.getItem('bat_shown') === 'true') return;
