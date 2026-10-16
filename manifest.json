@@ -5,47 +5,56 @@
   "theme_color": "#0a0a0a",
   "background_color": "#0a0a0a",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/BKbank/",
+  "start_url": "/BKbank/",
   "orientation": "portrait",
   "icons": [
-    { 
-      "src": "png/2025-01-31_14-13-47-Photoroom.png", 
-      "sizes": "192x192", 
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
-    { 
-      "src": "png/2025-01-31_14-13-47-Photoroom.png", 
-      "sizes": "512x512", 
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
   "file_handlers": [
     {
-      "action": "/",
+      "action": "/BKbank/",
       "accept": {
-        "application/octet-stream": [".bkp"],
-        "text/plain": [".bkp"]
+        "application/octet-stream": [
+          ".bkp"
+        ],
+        "text/plain": [
+          ".bkp"
+        ]
       },
       "name": "BK-Bank Backup File"
     }
   ],
   "share_target": {
-    "action": "/",
+    "action": "/BKbank/",
     "method": "POST",
     "enctype": "multipart/form-data",
     "params": {
       "files": [
         {
           "name": "backup_file",
-          "accept": [".bkp"]
+          "accept": [
+            ".bkp"
+          ]
         }
       ]
     }
   },
-  "categories": ["finance", "productivity"],
+  "categories": [
+    "finance",
+    "productivity"
+  ],
   "screenshots": [],
   "related_applications": [],
   "prefer_related_applications": false,
@@ -54,10 +63,10 @@
       "name": "Открыть бэкапы",
       "short_name": "Бэкапы",
       "description": "Управление резервными копиями",
-      "url": "/?action=backup",
+      "url": "/BKbank/?action=backup",
       "icons": [
         {
-          "src": "png/2025-01-31_14-13-47-Photoroom.png",
+          "src": "assets/images/logo.png",
           "sizes": "96x96"
         }
       ]

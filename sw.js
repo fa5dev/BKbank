@@ -2,14 +2,13 @@ const CACHE_NAME = 'bk-bank-v3';
 const BACKUP_CACHE = 'bk-backups-v1';
 
 // Базовый путь приложения
-const BASE_PATH = '/BK-Bank';
+const BASE_PATH = '/BKbank';
 
 const urlsToCache = [
   `${BASE_PATH}/`,
   `${BASE_PATH}/index.html`,
-  `${BASE_PATH}/style.css`,
+  `${BASE_PATH}/css/style.css`,
   `${BASE_PATH}/manifest.json`,
-  `${BASE_PATH}/lib/crypto-js.min.js`
 ];
 
 // Установка Service Worker
@@ -95,8 +94,8 @@ self.addEventListener('message', event => {
     // Уведомление о создании бэкапа
     self.registration.showNotification('💾 BK-Bank Бэкап', {
       body: '✅ Бэкап успешно создан! Файл защищен паролем.',
-      icon: `${BASE_PATH}/png/2025-01-31_14-13-47-Photoroom.png`,
-      badge: `${BASE_PATH}/png/2025-01-31_14-13-47-Photoroom.png`,
+      icon: `${BASE_PATH}/assets/images/logo.png`,
+      badge: `${BASE_PATH}/assets/images/logo.png`,
       vibrate: [200, 100, 200],
       tag: 'backup-created',
       renotify: true,
@@ -121,8 +120,8 @@ self.addEventListener('message', event => {
   if (event.data && event.data.type === 'BACKUP_RESTORED') {
     self.registration.showNotification('🔄 BK-Bank', {
       body: '✅ Данные успешно восстановлены из бэкапа!',
-      icon: `${BASE_PATH}/png/2025-01-31_14-13-47-Photoroom.png`,
-      badge: `${BASE_PATH}/png/2025-01-31_14-13-47-Photoroom.png`,
+      icon: `${BASE_PATH}/assets/images/logo.png`,
+      badge: `${BASE_PATH}/assets/images/logo.png`,
       vibrate: [200, 100, 200],
       tag: 'backup-restored'
     });
@@ -182,7 +181,7 @@ self.addEventListener('push', event => {
   let data = {
     title: 'BK-Bank',
     body: 'Новое уведомление',
-    icon: `${BASE_PATH}/png/2025-01-31_14-13-47-Photoroom.png`
+    icon: `${BASE_PATH}/assets/images/logo.png`
   };
   
   if (event.data) {
